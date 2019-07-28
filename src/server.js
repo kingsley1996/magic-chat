@@ -2,6 +2,7 @@ import express from "express";
 import ConnectDB from "./config/connectDB";
 import configViewEngine from "./config/viewEngine";
 import initRoutes from "./routes/index";
+import bodyParser from "body-parser";
 
 let app = express();
 
@@ -10,6 +11,9 @@ ConnectDB();
 
 //Config view engine
 configViewEngine(app);
+
+// Enable post data for request
+app.use(bodyParser.urlencoded({extended: true}));
 
 // app.get("/test-database", async (req, res) => {
 //    try {
